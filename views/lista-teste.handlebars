@@ -1,10 +1,12 @@
 <table border="1px">
     <tr>
         <td> ra </td>
+        <td> editar </td>
     </tr>
     {{#each candidato}}
     <tr>
-        <td>{{_ra}}</td>
+        <td>{{ra}}</td>
+        <td><a href="editarCandidato/{{ra}}">Editar</a></td>
     </tr>
     {{/each}}
 </table>

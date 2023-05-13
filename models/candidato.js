@@ -3,7 +3,8 @@ module.exports = (sequelize, Sequelize) => {
         ra: {
             type: Sequelize.INTEGER,
             allowNull: false, primaryKey: true
-        }
+        },
+        nome: Sequelize.STRING
     });
     return Candidato;
 }

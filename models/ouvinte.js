@@ -4,7 +4,8 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull: false, primaryKey: true
         },
-        nome: Sequelize.STRING
+        nome: Sequelize.STRING,
+        votou: Sequelize.BOOLEAN
     });
     return Ouvinte;
 }

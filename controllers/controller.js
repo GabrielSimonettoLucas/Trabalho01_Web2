@@ -49,9 +49,9 @@ module.exports = {
     async getAdmmenu(req,res){
 
     },
-    async getLlist(req,res){
-        var teste = await db.Candidato.findAll();
-        res.render('lista-teste',{candidato: JSON.stringify(teste)});
-        console.log(candidato);
+    async getList(req,res){
+        db.Candidato.findAll().then((candidato) => {
+            res.render('lista-teste', {candidato: candidato.map(candidato => candidato.toJSON())});
+        });
     }
 }

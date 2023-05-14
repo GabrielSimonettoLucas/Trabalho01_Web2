@@ -59,4 +59,38 @@ module.exports = {
             res.render('lista-ouvintes', {ouvinte: ouvinte.map(ouvinte => ouvinte.toJSON())});
         });
     },
+    async getEditarcandidato(req, res){
+        db.Candidato.findOne({where: {ra: req.params.id}}).then((candidato) => {
+            res.render('editar-candidatos', {candidato: candidato.toJSON()});
+        });
+        //var candidato = await db.Candidato.findAll();
+        //res.render('editar-candidatos', {candidato: candidato.toJSON()});
+    },
+
+    async getExcluircandidato(req, res){
+        db.Candidato.findOne({where: {ra: req.params.id}}).then((candidato) => {
+            res.render('excluir-candidato', {candidato: candidato.toJSON()});
+        });
+        //var candidato = await db.Candidato.findOne({where: {ra: req.body.id}});
+        //candidato.destroy()
+    },
+
+    async postExcluircandidato(req, res){ //falta por a parada de excluir <<<=====
+        var candidato = await db.Candidato.findOne({where: {ra: req.body.id}});
+        //candidato.destroy();
+        candidato.destroy({where: {ra: req.body.id}});
+    },
+
+    async postEditcandidato(req, res) {
+        //var teste = await db.Candidato.findOneAndRemove({ra: req.body.id}, req.body);
+        var candidato = await db.Candidato.findOne({where: {ra: req.body.id}});
+        if (candidato) {
+            candidato.ra = req.body.ra;
+            candidato.nome = req.body.nome;
+            await candidato.save();
+        }
+        //console.log(candidato);
+        //db.Candidato.findOne({where: {ra: req.body.id}});
+        res.redirect('/listar-candidatos');
+    },
 }

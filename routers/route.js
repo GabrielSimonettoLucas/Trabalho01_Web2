@@ -16,3 +16,7 @@ route.get("/ouvinte/:id", controller.getOuvintemenu);
 route.get("/adm/:id", controller.getAdmmenu);
 route.get("/listar-candidatos", controller.getListcandidatos);
 route.get("/listar-ouvintes", controller.getListouvintes);
+route.get("/editarCandidato/:id", controller.getEditarcandidato)
+route.get("/excluirCandidato/:id", controller.getExcluircandidato)
+route.post("/post-edit-candidatos", controller.postEditcandidato)
+route.post("/post-excluir-candidatos", controller.postEditcandidato)

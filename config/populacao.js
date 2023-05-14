@@ -63,21 +63,27 @@ function popular_db(){
     })
     db.Candidato.create({
         ra: 0000017,
+        nome: 'Igor'
     })
     db.Candidato.create({
         ra: 0000007,
+        nome: 'Sherek',
     })
     db.Candidato.create({
         ra: 0000010,
+        nome: 'Fiona',
     })
     db.Candidato.create({
         ra: 0000006,
+        nome: 'Sergio'
     })
     db.Candidato.create({
         ra: 0000003,
+        nome: 'Amilton'
     })
     db.Candidato.create({
         ra: 0000001,
+        nome: 'Pedro'
     })
     db.Adm.create({
         ra: 9999999,

@@ -1,12 +1,16 @@
 <table border="1px">
     <tr>
-        <td> ra </td>
-        <td> editar </td>
+        <td> Ra </td>
+        <td> Nome </td>
+        <td> Editar </td>
+        <td> Excluir </td>
     </tr>
     {{#each candidato}}
     <tr>
         <td>{{ra}}</td>
+        <td>{{nome}}</td>
         <td><a href="editarCandidato/{{ra}}">Editar</a></td>
+        <td><a href="excluirCandidato/{{ra}}">Excluir</a></td>
     </tr>
     {{/each}}
 </table>

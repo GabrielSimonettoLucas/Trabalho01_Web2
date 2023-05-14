@@ -4,17 +4,17 @@ const path = require('path');
 const candidato = require('../models/candidato');
 
 module.exports = {
-    async getTelalogincandidato(req,res){
-        res.sendFile(path.join(__dirname + '/htmls/logar-candidato.html'));
-    },
     async getMenu(req,res){
-        res.sendFile(path.join(__dirname + '/htmls/menu.html'));
+        res.render('menu');
+    },
+    async getTelalogincandidato(req,res){
+        res.render('logar-candidato');
     },
     async getTelaloginouvinte(req, res){
-        res.sendFile(path.join(__dirname + '/htmls/logar-ouvinte.html'));
+        res.render('logar-ouvinte');
     },
     async getTelaloginadm(req,res){
-        res.sendFile(path.join(__dirname + '/htmls/logar-adm.html'));
+        res.render('logar-adm');
     },
     async getValidarcandidato(req,res){
         var pessoas = await db.Candidato.findOne({where: {ra: req.body.ra}});
@@ -47,11 +47,16 @@ module.exports = {
 
     },
     async getAdmmenu(req,res){
-
+        res.render('menu-adm');
     },
-    async getList(req,res){
+    async getListcandidatos(req,res){
         db.Candidato.findAll().then((candidato) => {
-            res.render('lista-teste', {candidato: candidato.map(candidato => candidato.toJSON())});
+            res.render('lista-candidatos', {candidato: candidato.map(candidato => candidato.toJSON())});
         });
-    }
+    },
+    async getListouvintes(req,res){
+        db.Ouvinte.findAll().then((ouvinte) => {
+            res.render('lista-ouvintes', {ouvinte: ouvinte.map(ouvinte => ouvinte.toJSON())});
+        });
+    },
 }

@@ -1,0 +1,16 @@
+<table border="1px">
+    <tr>
+        <td> Ra </td>
+        <td> Nome </td>
+        <td> Editar </td>
+        <td> Excluir </td>
+    </tr>
+    {{#each ouvinte}}
+    <tr>
+        <td>{{ra}}</td>
+        <td>{{nome}}</td>
+        <td><a href="editarOuvinte/{{ra}}">Editar</a></td>
+        <td><a href="excluirOuvinte/{{ra}}">Excluir</a></td>
+    </tr>
+    {{/each}}
+</table>

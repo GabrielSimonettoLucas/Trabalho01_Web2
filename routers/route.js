@@ -13,4 +13,6 @@ route.post("/validar-ouvinte", controller.getValidarouvinte);
 route.post("/validar-adm", controller.getValidaradm);
 route.get("/candidato/:id", controller.getCandidatomenu);
 route.get("/ouvinte/:id", controller.getOuvintemenu);
-route.get("/adm/:id", controller.getList);
+route.get("/adm/:id", controller.getAdmmenu);
+route.get("/listar-candidatos", controller.getListcandidatos);
+route.get("/listar-ouvintes", controller.getListouvintes);

@@ -1,0 +1,32 @@
+<table border="1px">
+    <tr>
+        <td> Ra do criador </td>
+        <td> Nome do criador </td>
+        <td> Participante 1 </td>
+        <td> Participante 2 </td>
+        <td> Participante 3 </td>
+        <td> Participante 4 </td>
+        <td> Participante 5 </td>
+        <td> Participante 6 </td>
+        <td> Musica </td>
+        <td> Votos </td>
+        <td> Editar </td>
+        <td> Excluir </td>
+    </tr>
+    {{#each apresentacao}}
+    <tr>
+        <td>{{ra_criador}}</td>
+        <td>{{nome_criador}}</td>
+        <td>{{participante1}}</td>
+        <td>{{participante2}}</td>
+        <td>{{participante3}}</td>
+        <td>{{participante4}}</td>
+        <td>{{participante5}}</td>
+        <td>{{participante6}}</td>
+        <td>{{musica}}</td>
+        <td>{{votos}}</td>
+        <td><a href="/editarApresentacao/{{id}}">Editar</a></td>
+        <td><a href="excluirApresentacao/{{id}}">Excluir</a></td>
+    </tr>
+    {{/each}}
+</table>

@@ -1,0 +1,14 @@
+<form action="/post-excluir-minhaapresentacao" method="post">
+    <h1>Excluir Apresentacao!</h1>
+    <input type="hidden" name="id" value="{{apresentacao.id}}">
+    Ra: 
+    <p>Tem certeza que deseja excluir a apresentacao:</p><br>
+    <p>Participante 1: {{apresentacao.participante1}}</p>
+    <p>Participante 2: {{apresentacao.participante2}}</p>
+    <p>Participante 3: {{apresentacao.participante3}}</p>
+    <p>Participante 4: {{apresentacao.participante4}}</p>
+    <p>Participante 5: {{apresentacao.participante5}}</p>
+    <p>Participante 6: {{apresentacao.participante6}}</p>
+    <input type="submit" value="Excluir">
+    <a href="/listar-minhas-apresentacoes/{{apresentacao.ra_criador}}"><input type="button" value="Cancelar"></a>
+</form>

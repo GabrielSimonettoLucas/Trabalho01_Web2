@@ -88,6 +88,10 @@ function popular_db(){
     db.Adm.create({
         ra: 9999999,
     })
+    db.Periodovotacao.create({
+        identificador: 3,
+        periodofotacaoiniciado: false,
+    })
 }
 
 module.exports = popular_db()

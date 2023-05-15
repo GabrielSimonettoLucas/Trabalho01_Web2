@@ -14,9 +14,5 @@ db.Candidato = require('../models/candidato.js')(sequelize,Sequelize);
 db.Ouvinte = require('../models/ouvinte.js')(sequelize,Sequelize);
 db.Apresentacao = require('../models/apresentacao.js')(sequelize,Sequelize);
 db.Adm = require('../models/adm.js')(sequelize,Sequelize);
-
-//Relacionamento
-db.Ouvinte.hasOne(db.Candidato);
-db.Candidato.hasMany(db.Apresentacao);
-
+db.Periodovotacao = require ('../models/periodovotacao.js')(sequelize,Sequelize);
 module.exports = db;

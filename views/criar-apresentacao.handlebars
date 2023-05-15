@@ -1,0 +1,14 @@
+<h1>Criar Apresentação</h1>
+    <form action="/post-criar-apresentacao" method="post">
+        <input type="hidden" name="id" value="{{candidato.ra}}">
+        <p>Insira os participantes, maximo de 6 permitido</p>
+        <input type="text" name="participante1" value="{{candidato.nome}}"><br>
+        <input type="text" name="participante2"><br>
+        <input type="text" name="participante3"><br>
+        <input type="text" name="participante4"><br>
+        <input type="text" name="participante5"><br>
+        <input type="text" name="participante6"><br>
+        <p>Insira a musica:</p>
+        <input type="text" name="musica"><br>
+        <input type="submit" value="Criar">
+    </form>

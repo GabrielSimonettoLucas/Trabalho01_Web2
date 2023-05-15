@@ -2,6 +2,7 @@ const sequelize = require('sequelize');
 const db = require('../config/db');
 const path = require('path');
 const candidato = require('../models/candidato');
+const periodovotacao = require('../models/periodovotacao');
 
 module.exports = {
     async getMenu(req,res){
@@ -46,7 +47,9 @@ module.exports = {
         });
     },
     async getOuvintemenu(req,res){
-
+        db.Ouvinte.findOne({where: {ra: req.params.id}}).then((ouvinte) => {
+            res.render('menu-ouvinte', {ouvinte: ouvinte.toJSON()});
+        });
     },
     async getAdmmenu(req,res){
         res.render('menu-adm');
@@ -73,6 +76,12 @@ module.exports = {
         });
     },
 
+    async getListvotarapresentacao(req,res){
+        db.Apresentacao.findAll().then((apresentacao) => {
+            res.render('lista-votar-apresentacao', {apresentacao: apresentacao.map(apresentacao => apresentacao.toJSON())});
+        });
+    },
+
     async getEditarcandidato(req, res){
         db.Candidato.findOne({where: {ra: req.params.id}}).then((candidato) => {
             res.render('editar-candidatos', {candidato: candidato.toJSON()});
@@ -93,6 +102,12 @@ module.exports = {
         });
     },
 
+    async getEditarapresentacao(req, res){
+        db.Apresentacao.findOne({where: {id: req.params.id}}).then((apresentacao) => {
+            res.render('editar-apresentacao', {apresentacao: apresentacao.toJSON()});
+        });
+    },
+
     async getExcluircandidato(req, res){
         db.Candidato.findOne({where: {ra: req.params.id}}).then((candidato) => {
             res.render('excluir-candidato', {candidato: candidato.toJSON()});
@@ -104,6 +119,13 @@ module.exports = {
             res.render('excluir-minha-apresentacao', {apresentacao: apresentacao.toJSON()});
         });
     },
+
+    async getExcluirapresentacao(req, res){
+        db.Apresentacao.findOne({where: {id: req.params.id}}).then((apresentacao) => {
+            res.render('excluir-apresentacao', {apresentacao: apresentacao.toJSON()});
+        });
+    },
+
 
     async getExcluirouvinte(req, res){
         db.Ouvinte.findOne({where: {ra: req.params.id}}).then((ouvinte) => {
@@ -132,6 +154,14 @@ module.exports = {
             where: {id: req.body.id},
         });
         res.redirect("/listar-minhas-apresentacoes/" + racriador);
+    },
+
+    async postExcluirapresentacao(req, res){ 
+        var temp = await db.Apresentacao.findOne({where: {id: req.body.id}});
+        await db.Apresentacao.destroy({
+            where: {id: req.body.id},
+        });
+        res.redirect("/listar-todas-apresentacao/");
     },
 
 
@@ -174,6 +204,24 @@ module.exports = {
         res.redirect("/listar-minhas-apresentacoes/" + req.body.ra_criador);
     },
 
+    async postEditarapresentacao(req,res){
+        var apresentacao = await db.Apresentacao.findOne({where: {id: req.body.id}});
+        console.log("PASSOU POR AQUI")
+        console.log(apresentacao)
+        console.log("=====================================================================================")
+        if (apresentacao) {
+            apresentacao.participante1 = req.body.participante1;
+            apresentacao.participante2 = req.body.participante2;
+            apresentacao.participante3 = req.body.participante3;
+            apresentacao.participante4 = req.body.participante4;
+            apresentacao.participante5 = req.body.participante5;
+            apresentacao.participante6 = req.body.participante6;
+            apresentacao.musica = req.body.musica;
+            await apresentacao.save();
+        }
+        res.redirect("/listar-todas-apresentacao");
+    },
+
     async getAlterarvotacao(req,res){
         var votacao = await db.Periodovotacao.findOne({where: {identificador: 3}});
         console.log(typeof votacao.periodofotacaoiniciado)
@@ -211,5 +259,29 @@ module.exports = {
 
         res.redirect('/candidato/' + req.body.id);
 
-    }
+    },
+
+    async getVotarapresentacao(req, res){
+        db.Apresentacao.findOne({where: {id: req.params.id}}).then((apresentacao) => {
+            res.render('votar-apresentacao', {apresentacao: apresentacao.toJSON()});
+        });
+    },
+
+    async postVotarapresentacao(req, res){ 
+        var periodovotacao = await db.Periodovotacao.findOne({where: {identificador: 3}});
+
+        console.log("PASSOU POR AQUI")
+        console.log("==================================================================")
+
+        if(periodovotacao.periodofotacaoiniciado == false){
+            res.render('votacao-periodo-nao-iniciado')
+        }else{
+            var temp = await db.Apresentacao.findOne({where: {id: req.body.id}});
+            temp.votos = temp.votos + 1;
+            await temp.save();
+            res.redirect("/menu");
+        }
+    },
+
 }
+

@@ -5,7 +5,6 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false, unique: true
         },
         nome: Sequelize.STRING,
-        votou: Sequelize.BOOLEAN
     });
     return Ouvinte;
 }
